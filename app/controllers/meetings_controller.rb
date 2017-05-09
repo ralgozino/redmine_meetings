@@ -126,10 +126,12 @@ class MeetingsController < ApplicationController
     @meeting.description = params[:meeting][:description]
     @meeting.location = params[:meeting][:location]
     @meeting.web = (params[:meeting][:web] == 'on')
-    tdate = Date.parse(params[:meeting][:start_date_date])
-    @meeting.start_date = @meeting_tz.local_to_utc(DateTime.civil(tdate.year, tdate.month, tdate.day, params[:start_time][:hour].to_i, params[:start_time][:minute].to_i))
-    tdate = Date.parse(params[:meeting][:end_date_date])
-    @meeting.end_date = @meeting_tz.local_to_utc(DateTime.civil(tdate.year, tdate.month, tdate.day, params[:end_time][:hour].to_i, params[:end_time][:minute].to_i))
+    # tdate = Date.parse(params[:meeting][:start_date_date])
+    # @meeting.start_date = @meeting_tz.local_to_utc(DateTime.civil(tdate.year, tdate.month, tdate.day, params[:start_time][:hour].to_i, params[:start_time][:minute].to_i))
+    @meeting.start_date = params[:meeting][:start_date_date])
+    # tdate = Date.parse(params[:meeting][:end_date_date])
+    # @meeting.end_date = @meeting_tz.local_to_utc(DateTime.civil(tdate.year, tdate.month, tdate.day, params[:end_time][:hour].to_i, params[:end_time][:minute].to_i))
+    @meeting.end_date = params[:meeting][:end_date_date]
     @meeting.watcher_user_ids = params[:watchers]
     @meeting.notify_participants = (params[:meeting][:notify_participants] == 'on')
     if @meeting.save

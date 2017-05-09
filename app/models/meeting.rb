@@ -20,8 +20,9 @@ class Meeting < ActiveRecord::Base
   :url => Proc.new {|o| {:controller => 'meetings', :action => 'show_meeting', :id => o.id} }
 
   acts_as_activity_provider :type => 'meetings',
-  :timestamp => "#{table_name}.updated_on",
-  :author_key => "#{table_name}.author_id",
+  # The following 2 lines throw error 500 in redmine 3.3.2 while accesing the activity view:
+  # :timestamp => "#{table_name}.updated_on",
+  # :author_key => "#{table_name}.author_id",
   :permission => :view_meetings,
   :scope => {:joins => "LEFT JOIN #{Project.table_name} ON #{Project.table_name}.id = #{table_name}.project_id"}
 
