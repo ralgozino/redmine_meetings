@@ -49,6 +49,6 @@ Redmine::Plugin.register :redmine_meetings do
 
   # Meetings are added to the activity view
   activity_provider :meetings, :class_name => 'Meeting', :default => false
-  Redmine::Search.available_search_types << 'meetings'
+  # Redmine::Search.available_search_types << 'meetings'
 
 end

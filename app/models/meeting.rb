@@ -11,7 +11,7 @@ class Meeting < ActiveRecord::Base
 
   acts_as_watchable
 
-  acts_as_searchable :columns => ["#{table_name}.subject", "#{table_name}.description"]
+  # acts_as_searchable :columns => ["#{table_name}.subject", "#{table_name}.description"]
 
   acts_as_event :title => Proc.new {|o| "#{l(:label_title_meeting)} ##{o.id}: #{format_time(o.start_date)} - #{o.subject}" },
   :description => Proc.new {|o| "#{o.description}"},
