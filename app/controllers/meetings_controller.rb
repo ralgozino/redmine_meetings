@@ -265,7 +265,7 @@ class MeetingsController < ApplicationController
     params[:answers] ||= []
     @answers = Array.new(@doodle.tab_options.size) { |index| params[:answers].include?(index.to_s) }
     if @user.mail
-      @response = @doodle.responses.find_or_initialize_by_author_id(@user.id)
+      @response = @doodle.responses.find_or_initialize_by(author_id: @user.id)
     elsif !params[:name].to_s.empty?
       @response = MeetingDoodleAnswer.new(:meeting_doodle => @doodle, :author => @user)
     else
